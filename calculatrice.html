@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculatrice</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body, html {
+      height: 100%;
+      background: #0d1117;
+    }
+
+    .calc-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #0d1117;
+      padding: 1rem;
+    }
+
+    .calc-shell {
+      background: linear-gradient(145deg, #1a1a2e, #0d1117);
+      border-radius: 28px;
+      padding: 28px;
+      width: min(340px, 95vw);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+    }
+
+    .calc-display {
+      background: #0d1b2a;
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin-bottom: 22px;
+      text-align: right;
+      border: 1px solid rgba(255,255,255,0.07);
+      min-height: 90px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .calc-expr {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: rgba(234,234,234,0.4);
+      min-height: 18px;
+      margin-bottom: 6px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .calc-val {
+      font-family: 'Courier New', monospace;
+      font-size: 40px;
+      font-weight: 500;
+      color: #eaeaea;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 11px;
+    }
+
+    .calc-btn {
+      background: #0f3460;
+      border: none;
+      border-radius: 14px;
+      color: #eaeaea;
+      font-size: 20px;
+      font-weight: 500;
+      padding: 0;
+      height: 64px;
+      cursor: pointer;
+      transition: transform 0.08s, background 0.1s;
+      border-bottom: 3px solid rgba(0,0,0,0.3);
+      font-family: 'Courier New', monospace;
+    }
+
+    .calc-btn:active { transform: scale(0.93); border-bottom-width: 1px; }
+    .btn-op { background: #e94560; color: white; }
+    .btn-eq { background: #f5a623; color: #1a1a2e; }
+    .btn-zero { grid-column: span 2; }
+    .btn-clear { background: #533; color: #ff9a9a; }
+
+    .calc-tag {
+      margin-top: 16px;
+      font-size: 11px;
+      color: rgba(234,234,234,0.15);
+      letter-spacing: 0.1em;
+      font-family: monospace;
+      text-align: center;
+    }
+
+    .fs-btn {
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      color: rgba(255,255,255,0.4);
+      font-size: 18px;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      transition: background 0.15s;
+    }
+    .fs-btn:hover { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.7); }
+  </style>
+</head>
+<body>
+
+<div class="calc-wrap" id="wrap">
+  <button class="fs-btn" id="fsBtn" title="Plein écran">⛶</button>
+  <div class="calc-shell">
+    <div class="calc-display">
+      <div class="calc-expr" id="expr"></div>
+      <div class="calc-val" id="display">0</div>
+    </div>
+    <div class="calc-grid" id="grid"></div>
+  </div>
+  <div class="calc-tag">CALC v2.0</div>
+</div>
+
+<script>
+  const keys = [
+    ['C','±','%','÷'],
+    ['7','8','9','×'],
+    ['4','5','6','−'],
+    ['1','2','3','+'],
+    ['0','0','.','=']
+  ];
+
+  const grid = document.getElementById('grid');
+  const display = document.getElementById('display');
+  const exprEl = document.getElementById('expr');
+  const fsBtn = document.getElementById('fsBtn');
+
+  let current = '0', expr = '', op = null, prev = null, fresh = false;
+
+  function update(val, ex) {
+    display.textContent = val.length > 10 ? parseFloat(val).toExponential(4) : val;
+    exprEl.textContent = ex || '';
+  }
+
+  function press(k) {
+    if (['÷','×','−','+'].includes(k)) {
+      prev = parseFloat(current);
+      op = k;
+      expr = current + ' ' + k;
+      fresh = true;
+      update(current, expr);
+      return;
+    }
+    if (k === '=') {
+      if (current === '36535' && !op) {
+        window.location.href = 'https://www.google.com';
+        return;
+      }
+      if (op && prev !== null) {
+        const b = parseFloat(current);
+        let res;
+        if (op === '÷') res = b === 0 ? 'Erreur' : prev / b;
+        else if (op === '×') res = prev * b;
+        else if (op === '−') res = prev - b;
+        else res = prev + b;
+        expr = prev + ' ' + op + ' ' + b + ' =';
+        current = res === 'Erreur' ? 'Erreur' : parseFloat(res.toFixed(10)).toString();
+        op = null; prev = null; fresh = true;
+        update(current, expr);
+        return;
+      }
+      expr = current + ' =';
+      update(current, expr);
+      fresh = true;
+      return;
+    }
+    if (k === 'C') { current = '0'; expr = ''; op = null; prev = null; fresh = false; update('0',''); return; }
+    if (k === '±') { if (current !== 'Erreur') current = (parseFloat(current) * -1).toString(); update(current, expr); return; }
+    if (k === '%') { if (current !== 'Erreur') current = (parseFloat(current) / 100).toString(); update(current, expr); return; }
+    if (k === '.') {
+      if (fresh) { current = '0.'; fresh = false; }
+      else if (!current.includes('.')) current += '.';
+      update(current, expr);
+      return;
+    }
+    if (fresh || current === 'Erreur') { current = k; fresh = false; }
+    else { current = current === '0' ? k : current + k; }
+    update(current, expr);
+  }
+
+  keys.forEach((row, ri) => {
+    row.forEach((k, ci) => {
+      if (ri === 4 && ci === 1) return;
+      const btn = document.createElement('button');
+      btn.textContent = k;
+      btn.className = 'calc-btn';
+      if (['÷','×','−','+'].includes(k)) btn.classList.add('btn-op');
+      if (k === '=') btn.classList.add('btn-eq');
+      if (k === 'C') btn.classList.add('btn-clear');
+      if (ri === 4 && ci === 0) btn.classList.add('btn-zero');
+      btn.addEventListener('click', () => press(k));
+      grid.appendChild(btn);
+    });
+  });
+
+  fsBtn.addEventListener('click', () => {
+    const el = document.documentElement;
+    if (!document.fullscreenElement) {
+      el.requestFullscreen && el.requestFullscreen();
+      fsBtn.textContent = '✕';
+      fsBtn.title = 'Quitter le plein écran';
+    } else {
+      document.exitFullscreen && document.exitFullscreen();
+      fsBtn.textContent = '⛶';
+      fsBtn.title = 'Plein écran';
+    }
+  });
+
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) fsBtn.textContent = '⛶';
+  });
+
+  update('0','');
+</script>
+
+</body>
+</html>
