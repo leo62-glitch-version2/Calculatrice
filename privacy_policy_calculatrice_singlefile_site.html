@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculatrice - Privacy Policy</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #f8fafc;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    header {
+      padding: 60px 20px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #cbd5e1;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 25px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      color: #38bdf8;
+      font-size: 1.6rem;
+    }
+
+    p {
+      color: #e2e8f0;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    li {
+      margin-bottom: 10px;
+      color: #e2e8f0;
+    }
+
+    .highlight {
+      color: #22c55e;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 40px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 10px 18px;
+      background: #22c55e;
+      color: white;
+      border-radius: 999px;
+      font-weight: bold;
+      margin-top: 15px;
+      box-shadow: 0 5px 15px rgba(34,197,94,0.4);
+    }
+
+    .lang-switch {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      opacity: 0.85;
+      transform: scale(1.05);
+    }
+
+    .btn-fr {
+      background: #38bdf8;
+      color: white;
+    }
+
+    .btn-en {
+      background: #8b5cf6;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Calculatrice</h1>
+    <p id="subtitle">Politique de confidentialité officielle</p>
+    <div class="badge" id="badge">Aucune donnée collectée</div>
+
+    <div class="lang-switch">
+      <button class="btn-fr" onclick="setLanguage('fr')">FR</button>
+      <button class="btn-en" onclick="setLanguage('en')">EN</button>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="card">
+      <h2 id="title1">1. Présentation</h2>
+      <p id="text1">
+        L'application <strong>Calculatrice</strong> est une calculatrice simple intégrant également un navigateur web.
+        Votre vie privée est importante et cette application a été conçue pour respecter totalement vos données personnelles.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2 id="title2">2. Données collectées</h2>
+      <p id="text2">
+        <span class="highlight">Nous ne collectons aucune donnée personnelle.</span>
+      </p>
+      <ul id="list1">
+        <li>Aucune information personnelle n'est enregistrée.</li>
+        <li>Aucun historique de navigation n'est stocké.</li>
+        <li>Aucune donnée de calcul n'est sauvegardée.</li>
+        <li>Aucun suivi utilisateur n'est effectué.</li>
+        <li>Aucun cookie n'est utilisé.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2 id="title3">3. Utilisation du navigateur intégré</h2>
+      <p id="text3">
+        Le navigateur web intégré permet simplement d'afficher des pages internet.
+        Toutes les connexions sont effectuées directement entre votre appareil et les sites visités.
+        L'application Calculatrice ne surveille ni ne conserve ces informations.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2 id="title4">4. Sécurité</h2>
+      <p id="text4">
+        Puisqu'aucune donnée n'est collectée ou stockée, vos informations restent privées sur votre appareil.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2 id="title5">5. Modifications</h2>
+      <p id="text5">
+        Cette politique de confidentialité peut être mise à jour à l'avenir.
+        Toute modification sera affichée sur cette page.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2 id="title6">6. Contact</h2>
+      <p id="text6">
+        Si vous avez des questions concernant cette politique de confidentialité,
+        vous pouvez contacter le développeur de l'application.
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p id="footerText">© 2026 Calculatrice — Tous droits réservés</p>
+  </footer>
+
+  <script>
+    const translations = {
+      fr: {
+        subtitle: "Politique de confidentialité officielle",
+        badge: "Aucune donnée collectée",
+        title1: "1. Présentation",
+        text1: "L'application Calculatrice est une calculatrice simple intégrant également un navigateur web. Votre vie privée est importante et cette application a été conçue pour respecter totalement vos données personnelles.",
+        title2: "2. Données collectées",
+        text2: "Nous ne collectons aucune donnée personnelle.",
+        list1: [
+          "Aucune information personnelle n'est enregistrée.",
+          "Aucun historique de navigation n'est stocké.",
+          "Aucune donnée de calcul n'est sauvegardée.",
+          "Aucun suivi utilisateur n'est effectué.",
+          "Aucun cookie n'est utilisé."
+        ],
+        title3: "3. Utilisation du navigateur intégré",
+        text3: "Le navigateur web intégré permet simplement d'afficher des pages internet. Toutes les connexions sont effectuées directement entre votre appareil et les sites visités. L'application Calculatrice ne surveille ni ne conserve ces informations.",
+        title4: "4. Sécurité",
+        text4: "Puisqu'aucune donnée n'est collectée ou stockée, vos informations restent privées sur votre appareil.",
+        title5: "5. Modifications",
+        text5: "Cette politique de confidentialité peut être mise à jour à l'avenir. Toute modification sera affichée sur cette page.",
+        title6: "6. Contact",
+        text6: "Si vous avez des questions concernant cette politique de confidentialité, vous pouvez contacter le développeur de l'application.",
+        footer: "© 2026 Calculatrice — Tous droits réservés"
+      },
+      en: {
+        subtitle: "Official Privacy Policy",
+        badge: "No data collected",
+        title1: "1. Introduction",
+        text1: "The Calculatrice application is a simple calculator that also includes a built-in web browser. Your privacy is important and this application was designed to fully respect your personal data.",
+        title2: "2. Data Collection",
+        text2: "We do not collect any personal data.",
+        list1: [
+          "No personal information is stored.",
+          "No browsing history is saved.",
+          "No calculator data is stored.",
+          "No user tracking is performed.",
+          "No cookies are used."
+        ],
+        title3: "3. Built-in Browser Usage",
+        text3: "The built-in web browser is only used to display internet pages. All connections are made directly between your device and the websites you visit. The Calculatrice application does not monitor or store this information.",
+        title4: "4. Security",
+        text4: "Since no data is collected or stored, your information remains private on your device.",
+        title5: "5. Changes",
+        text5: "This privacy policy may be updated in the future. Any modifications will be posted on this page.",
+        title6: "6. Contact",
+        text6: "If you have any questions regarding this privacy policy, you may contact the application developer.",
+        footer: "© 2026 Calculatrice — All rights reserved"
+      }
+    };
+
+    function setLanguage(lang) {
+      const t = translations[lang];
+
+      document.getElementById('subtitle').innerText = t.subtitle;
+      document.getElementById('badge').innerText = t.badge;
+
+      for (let i = 1; i <= 6; i++) {
+        document.getElementById(`title${i}`).innerText = t[`title${i}`];
+        document.getElementById(`text${i}`).innerText = t[`text${i}`];
+      }
+
+      const list = document.getElementById('list1');
+      list.innerHTML = '';
+
+      t.list1.forEach(item => {
+        const li = document.createElement('li');
+        li.innerText = item;
+        list.appendChild(li);
+      });
+
+      document.getElementById('footerText').innerText = t.footer;
+    }
+  </script>
+
+</body>
+</html>
